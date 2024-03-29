@@ -30,7 +30,7 @@ dnf search postgres
 dnf install postgresql15.x86_64
 
 # Testing the RDS DB connection
-psql -h studentdb.cpny086a0vbw.us-east-1.rds.amazonaws.com -p 5432 -U lv -d studentdb
+psql -h studentdb.cpny086a0vbw.us-east-1.rds.amazonaws.com -p 5432 -U studentdb -d postgres
 ```
 
 ### Deploying the application
@@ -47,8 +47,14 @@ You can use the following steps to deploy the application inside a EC2 instance.
 ```
 # Step 0 - Check RDS connectivity and create the DB
 
-# Login to the database
-psql -h studentdb.cpny086a0vbw.us-east-1.rds.amazonaws.com -p 5432 -U lv -d studentdb
+# Login to the database and create the DB
+psql -h studentdb.cpny086a0vbw.us-east-1.rds.amazonaws.com -p 5432 -U studentdb -d postgres
+CREATE DATABASE studentdb;
+\du
+GRANT ALL PRIVILEGES ON DATABASE "studentdb" TO student;
+\c student
+\d
+SELECT * FROM student;
 
 
 # Step 1 - Download the application binary - jar file
