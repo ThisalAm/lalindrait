@@ -49,6 +49,8 @@ You can use the following steps to deploy the application inside a EC2 instance.
 
 # Login to the database and create the DB
 psql -h studentdb.cpny086a0vbw.us-east-1.rds.amazonaws.com -p 5432 -U studentdb -d postgres
+
+# create a new DB in the DB prompt
 CREATE DATABASE studentdb;
 \du
 GRANT ALL PRIVILEGES ON DATABASE "studentdb" TO student;
