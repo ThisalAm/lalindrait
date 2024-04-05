@@ -50,13 +50,19 @@ You can use the following steps to deploy the application inside a EC2 instance.
 # Login to the database and create the DB
 psql -h studentdb.cpny086a0vbw.us-east-1.rds.amazonaws.com -p 5432 -U studentdb -d postgres
 
+# list available databases
+\l						List available databases
+\du						List all users and their assign roles
+\c dbname				Switch connection to a new database
+\dt						List available tables
+\h						Get help
+\q						Exit psql shell
+
 # create a new DB in the DB prompt
 CREATE DATABASE studentdb;
-\du
 GRANT ALL PRIVILEGES ON DATABASE "studentdb" TO student;
+\du
 \c student
-\d
-SELECT * FROM student;
 
 
 # Step 1 - Download the application binary - jar file
@@ -84,8 +90,10 @@ java -jar studentdb-0.0.1.jar
 # From the same ec2 instance execute the following. You shoud get some raw json output as the result
 curl http://127.0.0.1:8080/api/v1/student
 
+# If above gives you a json output then the application is working properly
+
 # If you have jq installed following will give you a formatted json output
-curl http://127.0.0.1:8080/api/v1/student | jq
+curl -s http://127.0.0.1:8080/api/v1/student | jq               $ This shows a pretty json output
 ```
 
 
